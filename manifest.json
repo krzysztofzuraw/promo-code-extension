@@ -1,0 +1,9 @@
+{
+  "manifest_version": 2,
+  "name": "Promo code tracker",
+  "version": "0.1.0",
+  "browser_action": {
+    "default_title": "Promo",
+    "defaultPopup": "dist/poup/index.html"
+  }
+}

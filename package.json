@@ -1,0 +1,27 @@
+{
+  "name": "promo-code-extension",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "start": "web-ext run --firefox=firefoxdeveloperedition",
+    "lint": "web-ext lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krzysztofzuraw/promo-code-extension.git"
+  },
+  "keywords": [],
+  "author": "Krzysztof Żuraw <info@kzuraw.com> (https://krzysztofzuraw.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krzysztofzuraw/promo-code-extension/issues"
+  },
+  "homepage": "https://github.com/krzysztofzuraw/promo-code-extension#readme",
+  "devDependencies": {
+    "ts-loader": "7.0.5",
+    "typescript": "3.9.5",
+    "web-ext": "4.2.0",
+    "webpack": "4.43.0",
+    "webpack-cli": "3.3.11"
+  }
+}
