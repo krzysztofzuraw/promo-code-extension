@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
+    "webpack": "webpack --watch",
     "start": "web-ext run --firefox=firefoxdeveloperedition",
     "lint": "web-ext lint"
   },
@@ -18,10 +19,18 @@
   },
   "homepage": "https://github.com/krzysztofzuraw/promo-code-extension#readme",
   "devDependencies": {
+    "@types/react": "16.9.36",
+    "@types/react-dom": "16.9.8",
+    "clean-webpack-plugin": "3.0.0",
+    "html-webpack-plugin": "4.3.0",
     "ts-loader": "7.0.5",
     "typescript": "3.9.5",
     "web-ext": "4.2.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   }
 }
