@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
-import { render } from "react-dom";
+import React, { FunctionComponent } from 'react';
+import { render } from 'react-dom';
 
 const Root: FunctionComponent = () => {
-  return <div>Working</div>;
+  return <div>Super cool working!</div>;
 };
 
-render(<Root />, document.getElementById("root"));
+render(<Root />, document.getElementById('root'));

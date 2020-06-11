@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "webpack": "webpack --watch",
-    "start": "web-ext run --firefox=firefoxdeveloperedition",
-    "lint": "web-ext lint"
+    "watch:webpack": "webpack --watch",
+    "watch:web-ext": "web-ext run --firefox=firefoxdeveloperedition",
+    "start": "run-p watch:*",
+    "lint:web-ext": "web-ext lint",
+    "lint:eslint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint:tsc": "tsc --project . --noEmit",
+    "lint": "npm-run-all lint:*"
   },
   "repository": {
     "type": "git",
@@ -21,8 +25,19 @@
   "devDependencies": {
     "@types/react": "16.9.36",
     "@types/react-dom": "16.9.8",
+    "@typescript-eslint/eslint-plugin": "3.2.0",
+    "@typescript-eslint/parser": "3.2.0",
     "clean-webpack-plugin": "3.0.0",
+    "eslint": "7.2.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.4",
     "html-webpack-plugin": "4.3.0",
+    "husky": "4.2.5",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.0.5",
+    "pretty-quick": "2.0.1",
     "ts-loader": "7.0.5",
     "typescript": "3.9.5",
     "web-ext": "4.2.0",

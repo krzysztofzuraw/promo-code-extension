@@ -4,6 +4,6 @@
   "version": "0.1.0",
   "browser_action": {
     "default_title": "Promo",
-    "defaultPopup": "dist/index.html"
+    "default_popup": "dist/index.html"
   }
 }

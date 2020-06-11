@@ -13,7 +13,7 @@ module.exports = {
   },
   devtool: "inline-source-map",
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({ template: "src/index.html" }),
   ],
   output: { filename: "[name].js", path: path.resolve(__dirname, "dist") },
