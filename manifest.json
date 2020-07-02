@@ -5,5 +5,6 @@
   "browser_action": {
     "default_title": "Promo",
     "default_popup": "dist/index.html"
-  }
+  },
+  "permissions": ["<all_urls>", "tabs"]
 }
