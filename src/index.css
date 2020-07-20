@@ -49,3 +49,45 @@ footer {
   font-size: 17px;
   font-weight: 600;
 }
+
+form {
+  display: grid;
+  grid-gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  color: #0c0c0d;
+  font-size: 0.833rem/1.4;
+}
+
+input {
+  padding: 8px;
+  height: 32px;
+  border-radius: 2px;
+  border: 1px solid rgba(12, 12, 13, 0.2);
+}
+
+input::placeholder {
+  color: #737373;
+  font-size: 0.833rem/1.4;
+}
+
+input:hover {
+  border-color: rgba(12, 12, 13, 0.3);
+}
+
+input:focus {
+  border-color: #0a84ff;
+  box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+input:error {
+  border-color: #d70022;
+  box-shadow: 0 0 0 1px #d70022, 0 0 0 4px rgba(251, 0, 34, 0.3);
+}
