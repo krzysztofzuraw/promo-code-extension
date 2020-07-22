@@ -40,6 +40,12 @@ export const AddNew: FunctionComponent = () => {
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
+        <footer>
+          <div className="form-buttons">
+            <button className="button-default">Cancel</button>
+            <button className="button-primary">Add</button>
+          </div>
+        </footer>
       </form>
     </div>
   );
