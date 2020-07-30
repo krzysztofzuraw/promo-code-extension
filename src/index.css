@@ -126,3 +126,49 @@ input:error {
   grid-gap: 12px;
   grid-auto-flow: column;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(12, 12, 13, 0.1);
+  border-radius: 4px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: minmax(100px, 300px) 200px;
+  grid-gap: 12px;
+}
+
+.align-right {
+  justify-self: flex-end;
+}
+
+.url {
+  align-self: center;
+  color: #b1b1b3;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  align-self: center;
+}
+
+.code {
+  font-size: 17px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  align-self: center;
+  cursor: pointer;
+}
+
+.valid-date {
+  font-size: 13px;
+  font-weight: 500;
+  align-self: center;
+}

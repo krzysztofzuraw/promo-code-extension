@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { render } from 'react-dom';
-import { AddNew } from './add-new';
 import './index.css';
+import { List } from './list';
 
 const Root: FunctionComponent = () => {
   // const [url, setUrl] = React.useState('');
@@ -11,7 +11,8 @@ const Root: FunctionComponent = () => {
   return (
     <div className="app">
       {/* <EmptyView /> */}
-      <AddNew />
+      {/* <AddNew /> */}
+      <List />
     </div>
   );
 };
