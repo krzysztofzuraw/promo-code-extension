@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "Promo code tracker",
+  "description": "Promo code tracker",
+  "version": "0.1.0",
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["storage", "tabs", "<all_urls>"]
+}
