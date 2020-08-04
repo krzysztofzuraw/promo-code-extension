@@ -58,7 +58,7 @@ const ClearIcon: FunctionComponent<{ onClick?: () => void }> = ({ onClick }) => 
     width="16"
     height="16"
     viewBox="0 0 16 16"
-    className="clear"
+    className="icon"
   >
     <path
       fill="context-fill"

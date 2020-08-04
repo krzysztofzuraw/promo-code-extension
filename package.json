@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "watch:webpack": "webpack --watch",
-    "watch:web-ext": "web-ext run --firefox=firefoxdeveloperedition",
-    "start": "run-p watch:*",
-    "lint:web-ext": "web-ext lint",
+    "start": "webpack --watch",
     "lint:eslint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:tsc": "tsc --project . --noEmit",
     "lint": "npm-run-all lint:*"

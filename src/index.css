@@ -103,19 +103,17 @@ input:hover {
 
 input:focus {
   border-color: #0a84ff;
-  box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
 input:error {
   border-color: #d70022;
-  box-shadow: 0 0 0 1px #d70022, 0 0 0 4px rgba(251, 0, 34, 0.3);
 }
 
-.clear + input {
+.icon + input {
   padding: 8px 32px 8px 8px;
 }
 
-.clear {
+.icon {
   position: absolute;
   bottom: 8px;
   right: 8px;
@@ -171,4 +169,16 @@ li {
   font-size: 13px;
   font-weight: 500;
   align-self: center;
+}
+
+.icon-copy {
+  cursor: pointer;
+}
+
+.icon-copy:hover {
+  fill: #0060df;
+}
+
+.list-item {
+  margin-bottom: 18px;
 }
