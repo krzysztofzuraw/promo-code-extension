@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebExtWebpackPlugin = require('@ianwalter/web-ext-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -22,6 +23,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './src/manifest.json' }],
     }),
+    new WebExtWebpackPlugin(),
   ],
   output: { filename: '[name].js', path: path.resolve(__dirname, 'dist') },
 };
