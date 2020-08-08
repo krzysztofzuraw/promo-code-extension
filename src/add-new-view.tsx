@@ -42,8 +42,8 @@ export const AddNew: FunctionComponent = () => {
         </div>
         <footer>
           <div className="form-buttons">
-            <button className="button-default">Cancel</button>
-            <button className="button-primary">Add</button>
+            <button className="button button-default">Cancel</button>
+            <button className="button button-primary">Add</button>
           </div>
         </footer>
       </form>

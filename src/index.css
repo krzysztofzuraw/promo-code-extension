@@ -17,7 +17,7 @@ body {
   padding: 0;
 }
 
-.app {
+.app-container {
   display: grid;
   grid-template-rows: 1fr 50px;
   width: 100%;
@@ -31,9 +31,7 @@ footer {
   grid-auto-flow: column;
 }
 
-.button-primary {
-  color: #ffffff;
-  background: #0060df;
+.button {
   height: 32px;
   border-radius: 2px;
   padding-left: 8px;
@@ -42,22 +40,19 @@ footer {
   min-width: 132px;
   font-size: 11px;
   font-weight: 400;
+}
+
+.button-primary {
+  color: #ffffff;
+  background: #0060df;
 }
 
 .button-default {
   color: #0c0c0d;
   background: rgba(12, 12, 13, 0.1);
-  height: 32px;
-  border-radius: 2px;
-  padding-left: 8px;
-  padding-right: 8px;
-  border: none;
-  min-width: 132px;
-  font-size: 11px;
-  font-weight: 400;
 }
 
-.empty {
+.empty-container {
   display: grid;
   place-items: center;
   font-size: 17px;
@@ -141,10 +136,6 @@ li {
   grid-gap: 12px;
 }
 
-.align-right {
-  justify-self: flex-end;
-}
-
 .url {
   align-self: center;
   color: #b1b1b3;
@@ -165,10 +156,17 @@ li {
   cursor: pointer;
 }
 
-.valid-date {
+.date {
   font-size: 13px;
   font-weight: 500;
   align-self: center;
+  justify-self: flex-end;
+}
+
+.button-delete {
+  justify-self: flex-end;
+  background-color: #d70022;
+  color: #ffffff
 }
 
 .icon-copy {

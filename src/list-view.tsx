@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-export const List: FunctionComponent = () => {
+export const ListView: FunctionComponent<{ onButtonClick: () => void }> = ({ onButtonClick }) => {
   return (
     <>
       <ul>
@@ -12,8 +12,13 @@ export const List: FunctionComponent = () => {
         <ListItem />
         <ListItem />
       </ul>
+      {/* <div className="empty-container">
+        <p>There are no promo codes - click button below to add first</p>
+      </div> */}
       <footer>
-        <button className="button-primary">Add new</button>
+        <button className="button button-primary" onClick={onButtonClick}>
+          Add new
+        </button>
       </footer>
     </>
   );
@@ -36,9 +41,9 @@ const ListItem: FunctionComponent = () => (
         readOnly
       />
     </div>
-    <div className="valid-date align-right">Valid until 12/03/2020</div>
+    <div className="date align-right">Valid until 12/03/2020</div>
     <div className="url">https://www.onet.pl</div>
-    <button className="button-default align-right">Edit</button>
+    <button className="button button-delete">Delete</button>
   </li>
 );
 

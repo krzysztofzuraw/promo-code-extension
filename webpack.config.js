@@ -23,7 +23,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './src/manifest.json' }],
     }),
-    new WebExtWebpackPlugin(),
+    // new WebExtWebpackPlugin(),
   ],
   output: { filename: '[name].js', path: path.resolve(__dirname, 'dist') },
 };
