@@ -1,12 +1,11 @@
 import React, { FunctionComponent, useReducer } from 'react';
 import { render } from 'react-dom';
-import { AddNew } from './add-new-view';
-import './index.css';
-import { ListView } from './list-view';
 import { ThemeProvider } from './theme';
+import { Add, Edit, List } from './views';
 
-type State = { location: 'ADD_NEW_VIEW' | 'LIST_VIEW' };
-type Action = 'ADD_NEW_VIEW' | 'LIST_VIEW';
+type Action = 'ADD_NEW_VIEW' | 'LIST_VIEW' | 'EDIT_VIEW';
+
+type State = { location: Action };
 
 const initalState: State = { location: 'LIST_VIEW' };
 
@@ -16,6 +15,8 @@ const reducer = (state: State, action: Action): State => {
       return { location: 'LIST_VIEW' };
     case 'ADD_NEW_VIEW':
       return { location: 'ADD_NEW_VIEW' };
+    case 'EDIT_VIEW':
+      return { location: 'EDIT_VIEW' };
     default:
       return state;
   }
@@ -32,8 +33,14 @@ const Root: FunctionComponent = () => {
     <ThemeProvider>
       {
         {
-          ADD_NEW_VIEW: <AddNew />,
-          LIST_VIEW: <ListView onButtonClick={() => dispatch('ADD_NEW_VIEW')} />,
+          ADD_NEW_VIEW: <Add onButtonClick={() => dispatch('LIST_VIEW')} />,
+          LIST_VIEW: (
+            <List
+              onAddButtonClick={() => dispatch('ADD_NEW_VIEW')}
+              onEditButtonClick={() => dispatch('EDIT_VIEW')}
+            />
+          ),
+          EDIT_VIEW: <Edit onButtonClick={() => dispatch('LIST_VIEW')} />,
         }[state.location]
       }
     </ThemeProvider>

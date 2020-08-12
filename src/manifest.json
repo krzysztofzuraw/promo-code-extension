@@ -3,8 +3,7 @@
   "name": "Promo code tracker",
   "version": "0.1.0",
   "browser_action": {
-    "default_title": "Promo",
     "default_popup": "index.html"
   },
-  "permissions": ["<all_urls>", "tabs"]
+  "permissions": ["storage", "tabs", "<all_urls>"]
 }

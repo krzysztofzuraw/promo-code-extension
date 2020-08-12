@@ -6,31 +6,28 @@ type Props = {
   value: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
-  type: 'text';
-  title: string;
-  icon: 'copy';
+  type?: 'text' | 'url' | 'date';
+  title?: string;
+  icon?: 'copy';
+  onIconClick?: () => void;
+  name?: string;
+  label?: string;
+  id?: string;
 };
 
-export const Field: FunctionComponent<Props> = ({
-  value,
-  onChange,
-  readOnly,
-  icon,
-  type,
-  title,
-}) => (
-  <div css={styles.field}>
-    {{ copy: <CopyIcon onClick={() => navigator.clipboard.writeText(value)} /> }[icon]}
-    <input
-      value={value}
-      type={type}
-      title={title}
-      readOnly={readOnly}
-      onChange={onChange}
-      css={styles.input}
-    />
-  </div>
-);
+export const Field: FunctionComponent<Props> = ({ label, icon, onIconClick, ...inputProps }) => {
+  return (
+    <div css={styles.field}>
+      {label && (
+        <label htmlFor={inputProps.id} css={styles.label}>
+          {label}
+        </label>
+      )}
+      {icon && <CopyIcon onClick={onIconClick} />}
+      <input {...inputProps} css={styles.input} />
+    </div>
+  );
+};
 
 const CopyIcon: FunctionComponent<{ onClick?: () => void }> = ({ onClick }) => (
   <svg
@@ -38,8 +35,8 @@ const CopyIcon: FunctionComponent<{ onClick?: () => void }> = ({ onClick }) => (
     width="16"
     height="16"
     viewBox="0 0 16 16"
-    css={[styles.icon, styles.copyIcon]}
     onClick={onClick}
+    css={styles.icon}
   >
     <path
       fill="context-fill"
@@ -55,9 +52,8 @@ const styles = {
     position: 'relative',
   }),
   input: css({
-    padding: '8px',
-    height: '32px',
     borderRadius: '2px',
+    padding: '8px',
     border: '1px solid rgba(12, 12, 13, 0.2)',
     ':only-child': {
       backgroundColor: 'red',
@@ -77,18 +73,20 @@ const styles = {
     },
   }),
   icon: {
-    position: 'absolute',
-    bottom: '8px',
+    position: 'absolute' as any,
+    top: '10px',
     right: '8px',
     cursor: 'pointer',
     '+ input': {
       padding: '8px 32px 8px 8px;',
     },
-  },
-  copyIcon: {
     ':hover': {
-      fill: '#0060df'
-    }
-    }
-  }
+      fill: '#0060df',
+    },
+  },
+  label: {
+    marginBottom: '8px',
+    color: '#0c0c0d',
+    fontSize: '0.833rem/1.4',
+  },
 };

@@ -3,17 +3,29 @@ import { css, jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 import { Field } from './field';
 
-export const ListItem: FunctionComponent<{ promoCode: string; date: string; url: string }> = ({
-  promoCode,
-  date,
-  url,
-}) => {
+type Props = {
+  promoCode: string;
+  date: string;
+  url: string;
+  onEditButtonClick: () => void;
+};
+
+export const ListItem: FunctionComponent<Props> = ({ promoCode, date, url, onEditButtonClick }) => {
   return (
     <li css={styles.item}>
-      <Field value={promoCode} readOnly type="text" title="click icon to copy" icon="copy" />
+      <Field
+        value={promoCode}
+        readOnly
+        type="text"
+        title="click icon to copy"
+        icon="copy"
+        onIconClick={() => navigator.clipboard.writeText(promoCode)}
+      />
       <div css={styles.date}>Valid until {date}</div>
       <div css={styles.url}>{url}</div>
-      <button css={styles.button}>Edit</button>
+      <button css={styles.button} onClick={onEditButtonClick}>
+        Edit
+      </button>
     </li>
   );
 };
@@ -44,6 +56,15 @@ const styles = {
   }),
   button: css({
     color: '#0c0c0d',
+    height: '32px',
+    borderRadius: '2px',
+    paddingLeft: '8px',
+    paddingRight: '8px',
+    border: 'none',
+    width: '52px',
+    fontSize: '11px',
+    fontWeight: 400,
     background: 'rgba(12, 12, 13, 0.1)',
+    justifySelf: 'self-end',
   }),
 };
