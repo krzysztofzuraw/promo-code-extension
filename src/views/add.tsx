@@ -1,20 +1,46 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Field } from '../components/field';
+import { PromoCodeEntry } from '../models';
 
 type Props = {
-  onButtonClick: () => void;
+  closeView: () => void;
 };
 
-export const Add: FunctionComponent<Props> = ({ onButtonClick }) => {
+export const Add: FunctionComponent<Props> = ({ closeView }) => {
   const [url, setUrl] = useState('');
   const [code, setCode] = useState('');
   const [date, setDate] = useState('');
 
+  useEffect(() => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const url = new URL(tabs[0].url ?? '');
+      setUrl(url.origin);
+    });
+  }, []);
+
+  const savePromoCodeToStorage = () => {
+    chrome.storage.local.get(['codes'], (items) => {
+      const promoCode: PromoCodeEntry = { id: uuidv4(), url, code, date };
+      if (items.codes) {
+        chrome.storage.local.set({ codes: [...items.codes, promoCode] });
+      } else {
+        chrome.storage.local.set({ codes: [promoCode] });
+      }
+    });
+  };
+
   return (
     <div css={styles.container}>
-      <form css={styles.form}>
+      <form
+        css={styles.form}
+        onSubmit={() => {
+          savePromoCodeToStorage();
+          closeView();
+        }}
+      >
         <Field
           value={url}
           id="url"
@@ -40,10 +66,10 @@ export const Add: FunctionComponent<Props> = ({ onButtonClick }) => {
         />
         <footer>
           <div css={styles.buttonsWrapper}>
-            <button css={[styles.button, styles.buttonDefault]} onClick={onButtonClick}>
+            <button css={[styles.button, styles.buttonDefault]} onClick={closeView}>
               Cancel
             </button>
-            <button css={styles.button} onClick={onButtonClick}>
+            <button css={styles.button} type="submit">
               Add
             </button>
           </div>

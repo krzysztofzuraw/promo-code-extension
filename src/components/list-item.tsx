@@ -4,22 +4,22 @@ import { FunctionComponent } from 'react';
 import { Field } from './field';
 
 type Props = {
-  promoCode: string;
+  code: string;
   date: string;
   url: string;
   onEditButtonClick: () => void;
 };
 
-export const ListItem: FunctionComponent<Props> = ({ promoCode, date, url, onEditButtonClick }) => {
+export const ListItem: FunctionComponent<Props> = ({ code, date, url, onEditButtonClick }) => {
   return (
     <li css={styles.item}>
       <Field
-        value={promoCode}
+        value={code}
         readOnly
         type="text"
         title="click icon to copy"
         icon="copy"
-        onIconClick={() => navigator.clipboard.writeText(promoCode)}
+        onIconClick={() => navigator.clipboard.writeText(code)}
       />
       <div css={styles.date}>Valid until {date}</div>
       <div css={styles.url}>{url}</div>

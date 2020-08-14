@@ -5,18 +5,18 @@ import { Add, Edit, List } from './views';
 
 type Action = 'ADD_NEW_VIEW' | 'LIST_VIEW' | 'EDIT_VIEW';
 
-type State = { location: Action };
+type State = { location: Action; itemId: string };
 
-const initalState: State = { location: 'LIST_VIEW' };
+const initalState: State = { location: 'LIST_VIEW', itemId: '' };
 
 const reducer = (state: State, action: Action): State => {
   switch (action) {
     case 'LIST_VIEW':
-      return { location: 'LIST_VIEW' };
+      return { location: 'LIST_VIEW', itemId: '' };
     case 'ADD_NEW_VIEW':
-      return { location: 'ADD_NEW_VIEW' };
+      return { location: 'ADD_NEW_VIEW', itemId: '' };
     case 'EDIT_VIEW':
-      return { location: 'EDIT_VIEW' };
+      return { location: 'EDIT_VIEW', itemId: '' };
     default:
       return state;
   }
@@ -24,18 +24,15 @@ const reducer = (state: State, action: Action): State => {
 
 const Root: FunctionComponent = () => {
   const [state, dispatch] = useReducer(reducer, initalState);
-  // const [url, setUrl] = React.useState('');
-  // browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
-  //   setUrl(tabs[0].url ?? '');
-  // });
 
   return (
     <ThemeProvider>
       {
         {
-          ADD_NEW_VIEW: <Add onButtonClick={() => dispatch('LIST_VIEW')} />,
+          ADD_NEW_VIEW: <Add closeView={() => dispatch('LIST_VIEW')} />,
           LIST_VIEW: (
             <List
+              key={state.location}
               onAddButtonClick={() => dispatch('ADD_NEW_VIEW')}
               onEditButtonClick={() => dispatch('EDIT_VIEW')}
             />

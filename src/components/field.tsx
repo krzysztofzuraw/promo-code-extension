@@ -3,7 +3,7 @@ import { css, jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 
 type Props = {
-  value: string;
+  value: string | undefined;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   type?: 'text' | 'url' | 'date';
@@ -24,7 +24,7 @@ export const Field: FunctionComponent<Props> = ({ label, icon, onIconClick, ...i
         </label>
       )}
       {icon && <CopyIcon onClick={onIconClick} />}
-      <input {...inputProps} css={styles.input} />
+      <input {...inputProps} css={styles.input} required={true} />
     </div>
   );
 };

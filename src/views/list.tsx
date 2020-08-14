@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { EmptyState, ListItem } from '../components';
+import { PromoCodeEntry } from '../models';
 
 type Props = {
   onAddButtonClick: () => void;
@@ -9,17 +10,19 @@ type Props = {
 };
 
 export const List: FunctionComponent<Props> = ({ onAddButtonClick, onEditButtonClick }) => {
-  const MOCKED_LIST_DATA = [{ promoCode: 'lorem', date: '12/03/2020', url: 'https://www.onet.pl' }];
+  const [listItems, setListItems] = useState<PromoCodeEntry[]>([]);
+  // chrome.storage.local.clear();
+  chrome.storage.local.get(['codes'], (items) => {
+    if (items.codes) {
+      setListItems(items.codes);
+    }
+  });
   return (
     <div css={styles.container}>
       <ul>
-        {MOCKED_LIST_DATA.length > 0 ? (
-          MOCKED_LIST_DATA.map((data) => (
-            <ListItem
-              {...data}
-              key={`${data.promoCode}-${data.date}-${data.url}`}
-              onEditButtonClick={onEditButtonClick}
-            />
+        {listItems.length > 0 ? (
+          listItems.map((data) => (
+            <ListItem {...data} key={data.id} onEditButtonClick={onEditButtonClick} />
           ))
         ) : (
           <EmptyState />
