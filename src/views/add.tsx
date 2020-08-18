@@ -22,25 +22,23 @@ export const Add: FunctionComponent<Props> = ({ closeView }) => {
   }, []);
 
   const savePromoCodeToStorage = () => {
-    chrome.storage.local.get(['codes'], (items) => {
+    chrome.storage.local.get(['codes'], (items: { [codes: string]: PromoCodeEntry[] }) => {
       const promoCode: PromoCodeEntry = { id: uuidv4(), url, code, date };
       if (items.codes) {
-        chrome.storage.local.set({ codes: [...items.codes, promoCode] });
+        chrome.storage.local.set({ codes: [...items.codes, promoCode] }, () => {
+          closeView();
+        });
       } else {
-        chrome.storage.local.set({ codes: [promoCode] });
+        chrome.storage.local.set({ codes: [promoCode] }, () => {
+          closeView();
+        });
       }
     });
   };
 
   return (
     <div css={styles.container}>
-      <form
-        css={styles.form}
-        onSubmit={() => {
-          savePromoCodeToStorage();
-          closeView();
-        }}
-      >
+      <form css={styles.form} onSubmit={savePromoCodeToStorage}>
         <Field
           value={url}
           id="url"
@@ -79,11 +77,13 @@ export const Add: FunctionComponent<Props> = ({ closeView }) => {
   );
 };
 
+Add.displayName = 'AddView';
+
 const styles = {
   container: css({
     display: 'grid',
-    gridTemplateRows: '1fr 52px',
     height: 'calc(100vh - 32px)',
+    maxHeigh: '350px',
     padding: '16px',
     footer: {
       display: 'grid',

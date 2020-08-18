@@ -39,12 +39,17 @@ const styles = {
     gridTemplateRows: 'repeat(2, 1fr)',
     gridTemplateColumns: 'minmax(100px, 300px) 200px',
     gridGap: '12px',
+    ':hover': {
+      boxShadow: '0 4px 16px rgba(12, 12, 13, 0.1)',
+    },
+    marginBottom: '12px',
   }),
   date: css({
     fontSize: '13px',
     fontWeight: 500,
     alignSelf: 'center',
     justifySelf: 'flex-end',
+    cursor: 'default',
   }),
   url: css({
     alignSelf: 'center',
@@ -66,5 +71,6 @@ const styles = {
     fontWeight: 400,
     background: 'rgba(12, 12, 13, 0.1)',
     justifySelf: 'self-end',
+    cursor: 'pointer',
   }),
 };

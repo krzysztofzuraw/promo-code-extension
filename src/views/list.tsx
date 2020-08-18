@@ -1,28 +1,35 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { EmptyState, ListItem } from '../components';
 import { PromoCodeEntry } from '../models';
 
 type Props = {
   onAddButtonClick: () => void;
-  onEditButtonClick: () => void;
+  onEditButtonClick: (itemId: string) => void;
 };
 
 export const List: FunctionComponent<Props> = ({ onAddButtonClick, onEditButtonClick }) => {
   const [listItems, setListItems] = useState<PromoCodeEntry[]>([]);
   // chrome.storage.local.clear();
-  chrome.storage.local.get(['codes'], (items) => {
-    if (items.codes) {
-      setListItems(items.codes);
-    }
-  });
+  useEffect(() => {
+    chrome.storage.local.get(['codes'], (items: { [codes: string]: PromoCodeEntry[] }) => {
+      if (items.codes) {
+        setListItems(items.codes);
+      }
+    });
+  }, []);
+
   return (
     <div css={styles.container}>
       <ul>
         {listItems.length > 0 ? (
           listItems.map((data) => (
-            <ListItem {...data} key={data.id} onEditButtonClick={onEditButtonClick} />
+            <ListItem
+              {...data}
+              key={data.id}
+              onEditButtonClick={() => onEditButtonClick(data.id)}
+            />
           ))
         ) : (
           <EmptyState />
@@ -36,6 +43,8 @@ export const List: FunctionComponent<Props> = ({ onAddButtonClick, onEditButtonC
     </div>
   );
 };
+
+List.displayName = 'ListView';
 
 const styles = {
   container: css({

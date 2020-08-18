@@ -1,16 +1,57 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Field } from '../components/field';
+import { PromoCodeEntry } from '../models';
 
 type Props = {
-  onButtonClick: () => void;
+  closeView: () => void;
+  itemId: string | undefined;
 };
 
-export const Edit: FunctionComponent<Props> = ({ onButtonClick }) => {
+export const Edit: FunctionComponent<Props> = ({ closeView, itemId }) => {
   const [url, setUrl] = useState('');
   const [code, setCode] = useState('');
   const [date, setDate] = useState('');
+
+  useEffect(() => {
+    chrome.storage.local.get(['codes'], (items: { [codes: string]: PromoCodeEntry[] }) => {
+      if (items.codes) {
+        const possibleCode = items.codes.find((code) => code.id === itemId);
+        if (possibleCode) {
+          setUrl(possibleCode.url);
+          setCode(possibleCode.code);
+          setDate(possibleCode.date);
+        }
+      }
+    });
+  }, []);
+
+  const editPromoCode = () => {
+    chrome.storage.local.get(['codes'], (items: { [codes: string]: PromoCodeEntry[] }) => {
+      if (items.codes) {
+        const updatedCodes = items.codes.map((c) =>
+          c.id === itemId ? { id: itemId, code, url, date } : c
+        );
+        chrome.storage.local.set({ codes: updatedCodes }, () => {
+          closeView();
+        });
+      }
+    });
+  };
+
+  const deletePromoCode = () => {
+    chrome.storage.local.get(['codes'], (items: { [codes: string]: PromoCodeEntry[] }) => {
+      if (items.codes) {
+        chrome.storage.local.set(
+          { codes: items.codes.filter((item) => item.id !== itemId) },
+          () => {
+            closeView();
+          }
+        );
+      }
+    });
+  };
 
   return (
     <div css={styles.container}>
@@ -40,10 +81,10 @@ export const Edit: FunctionComponent<Props> = ({ onButtonClick }) => {
         />
         <footer>
           <div css={styles.buttonsWrapper}>
-            <button css={[styles.button, styles.buttonDelete]} onClick={onButtonClick}>
+            <button css={[styles.button, styles.buttonDelete]} onClick={deletePromoCode}>
               Delete
             </button>
-            <button css={styles.button} onClick={onButtonClick}>
+            <button css={styles.button} onClick={editPromoCode}>
               Confirm
             </button>
           </div>
@@ -56,7 +97,6 @@ export const Edit: FunctionComponent<Props> = ({ onButtonClick }) => {
 const styles = {
   container: css({
     display: 'grid',
-    gridTemplateRows: '1fr 52px',
     height: 'calc(100vh - 32px)',
     padding: '16px',
     footer: {
@@ -64,6 +104,7 @@ const styles = {
       placeItems: 'center right',
       gridAutoFlow: 'column',
     },
+    maxHeight: '350px',
   }),
   form: css({ display: 'grid', gridGap: '12px' }),
   buttonsWrapper: css({
