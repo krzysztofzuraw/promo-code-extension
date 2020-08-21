@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useReducer } from 'react';
 import { render } from 'react-dom';
-import { ThemeProvider } from './theme';
+
+import { GlobalStyles } from './styles';
 import { Add, Edit, List } from './views';
 
 type Action = { to: 'ADD_NEW_VIEW' } | { to: 'LIST_VIEW' } | { to: 'EDIT_VIEW'; itemId: string };
@@ -26,7 +27,7 @@ const Root: FunctionComponent = () => {
   const [state, move] = useReducer(reducer, initalState);
 
   return (
-    <ThemeProvider>
+    <GlobalStyles>
       {
         {
           ADD_NEW_VIEW: <Add closeView={() => move({ to: 'LIST_VIEW' })} />,
@@ -46,7 +47,7 @@ const Root: FunctionComponent = () => {
           ),
         }[state.location]
       }
-    </ThemeProvider>
+    </GlobalStyles>
   );
 };
 

@@ -11,7 +11,6 @@ type Props = {
 
 export const List: FunctionComponent<Props> = ({ onAddButtonClick, onEditButtonClick }) => {
   const [listItems, setListItems] = useState<PromoCodeEntry[]>([]);
-  // chrome.storage.local.clear();
   useEffect(() => {
     chrome.storage.local.get(['codes'], (items: { [codes: string]: PromoCodeEntry[] }) => {
       if (items.codes) {

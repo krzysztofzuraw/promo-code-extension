@@ -1,13 +1,10 @@
 /** @jsx jsx */
 import { css, Global, jsx } from '@emotion/core';
-import { ThemeProvider as EmotonThemeProvider } from 'emotion-theming';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, Fragment } from 'react';
 
-const theme = {};
-
-export const ThemeProvider: FunctionComponent = ({ children }) => {
+export const GlobalStyles: FunctionComponent = ({ children }) => {
   return (
-    <EmotonThemeProvider theme={theme}>
+    <Fragment>
       <Global
         styles={css({
           body: {
@@ -19,6 +16,6 @@ export const ThemeProvider: FunctionComponent = ({ children }) => {
         })}
       />
       {children}
-    </EmotonThemeProvider>
+    </Fragment>
   );
 };
