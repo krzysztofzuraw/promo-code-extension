@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { Field } from '../components/field';
-import { PromoCodeEntry } from '../models';
+import { PromoCodeEntry } from '../../models';
 
 type Props = {
   closeView: () => void;
