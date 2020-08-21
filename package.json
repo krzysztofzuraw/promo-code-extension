@@ -1,7 +1,7 @@
 {
-  "name": "promo-code-extension",
+  "name": "rabat",
   "version": "0.1.0",
-  "description": "",
+  "description": "Discount/Promo codes tracker for chrome",
   "scripts": {
     "start": "webpack --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/krzysztofzuraw/promo-code-extension.git"
+    "url": "git+https://github.com/krzysztofzuraw/rabat.git"
   },
   "keywords": [],
   "author": "Krzysztof Żuraw <info@kzuraw.com> (https://krzysztofzuraw.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/krzysztofzuraw/promo-code-extension/issues"
+    "url": "https://github.com/krzysztofzuraw/rabat/issues"
   },
-  "homepage": "https://github.com/krzysztofzuraw/promo-code-extension#readme",
+  "homepage": "https://github.com/krzysztofzuraw/rabat#readme",
   "devDependencies": {
     "@types/chrome": "0.0.122",
     "@types/react": "16.9.36",
